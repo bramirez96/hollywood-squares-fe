@@ -7,7 +7,11 @@ const App = () => {
   return (
     <div className="App">
       <Switch>
-        <Route path="/login" component={() => <LandingPage />} />
+        <Route
+          path={['/login', '/register']}
+          component={() => <LandingPage />}
+        />
+        <PrivateRoute path="/" component={() => <h1>You made it!</h1>} />
       </Switch>
     </div>
   );

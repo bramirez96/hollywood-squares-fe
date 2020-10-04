@@ -1,45 +1,36 @@
 import React from 'react';
+import { Route, Switch, useHistory } from 'react-router-dom';
+import LoginForm from './LoginForm';
 import StyledLandingPage from './StyledLandingPage';
 
-import { Button, Checkbox, Form, Input } from 'antd';
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
+import { Row, Col, Tabs } from 'antd';
+import RegisterForm from './RegisterForm';
 
 const LandingPage = (props) => {
+  const { push, location } = useHistory();
+  const tabClickHandler = (key) => {
+    push(key);
+  };
   return (
     <StyledLandingPage>
-      <h1>some text</h1>
-      <Form
-        initialValues={{
-          remember: true,
-        }}
-      >
-        <Form.Item name="Username">
-          <Input
-            prefix={<UserOutlined className="site-form-item-icon" />}
-            placeholder="Username"
-          />
-        </Form.Item>
-        <Form.Item name="Password">
-          <Input
-            type="password"
-            prefix={<LockOutlined className="site-form-item-icon" />}
-            placeholder="Password"
-          />
-        </Form.Item>
-        <Form.Item>
-          <Form.Item name="remember">
-            <Checkbox>Remember Me</Checkbox>
-          </Form.Item>
-
-          <Link>Register</Link>
-        </Form.Item>
-        <Form.Item>
-          <Button type="primary" htmlType="submit">
-            Log In
-          </Button>
-        </Form.Item>
-      </Form>
+      <Row>
+        <Col span={16}>
+          <h1>Hollywood Squares</h1>
+        </Col>
+        <Col span={8}>
+          <Tabs
+            defaultActiveKey={location.pathname}
+            onTabClick={tabClickHandler}
+          >
+            <Tabs.TabPane key="/login" tab="Login" />
+            <Tabs.TabPane key="/register" tab="Register" />
+          </Tabs>
+          <Switch>
+            <Route path="/login" component={() => <LoginForm />} />
+            <Route path="/register" component={() => <RegisterForm />} />
+          </Switch>
+        </Col>
+      </Row>
     </StyledLandingPage>
   );
 };
