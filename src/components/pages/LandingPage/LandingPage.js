@@ -1,10 +1,11 @@
 import React from 'react';
 import { Route, Switch, useHistory } from 'react-router-dom';
-import LoginForm from './LoginForm';
+
 import StyledLandingPage from './StyledLandingPage';
+import LoginForm from './LoginForm';
+import RegisterForm from './RegisterForm';
 
 import { Row, Col, Tabs } from 'antd';
-import RegisterForm from './RegisterForm';
 
 const LandingPage = (props) => {
   const { push, location } = useHistory();
