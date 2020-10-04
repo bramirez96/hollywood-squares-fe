@@ -1,13 +1,17 @@
-import React, { useCallback, useEffect, useMemo } from 'react';
+import React, { useCallback, useEffect } from 'react';
 
 import { connect } from 'react-redux';
 import { games } from '../../../store/actions';
 import { getGames } from '../../../api';
 
 import StyledGameHome from './StyledGameHome';
-import { Spin } from 'antd';
+import DisplayGameCard from './DisplayGameCard';
+import { Row, Spin } from 'antd';
 
 const GameHome = (props) => {
+  // Getting State data form props
+  const { games, isLoading } = props;
+
   // Pulling Redux action creators from props
   const { startFetch, fetchSuccess, fetchFailure } = props;
   const load = useCallback(async () => {
@@ -21,24 +25,33 @@ const GameHome = (props) => {
     }
   }, [startFetch, fetchFailure, fetchSuccess]);
 
+  const { openGame } = props;
+  const openBoard = (i) => {
+    openGame(games[i]);
+  };
+
   useEffect(() => {
     load();
   }, [load]);
 
-  // Getting State data form props
-  const { games, isLoading } = props;
-
   return (
     <StyledGameHome>
-      <h1>GAME</h1>
+      <h1>My Games</h1>
       {isLoading ? <Spin /> : null}
-      {games.map((item) => {
-        return (
-          <div key={item.ID}>
-            {item.ID}: {item.Title}
-          </div>
-        );
-      })}
+      <Row gutter={16} className="game-list">
+        {games.map((item, i) => {
+          return (
+            <DisplayGameCard
+              key={item.ID}
+              game={item}
+              clickHander={(e) => {
+                e.preventDefault();
+                openBoard(i);
+              }}
+            />
+          );
+        })}
+      </Row>
     </StyledGameHome>
   );
 };

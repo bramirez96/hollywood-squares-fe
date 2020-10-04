@@ -4,6 +4,7 @@ const initialState = {
   loading: false,
   instances: [],
 };
+
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case games.FETCH_GAMES:

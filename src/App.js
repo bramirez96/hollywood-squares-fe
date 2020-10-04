@@ -13,7 +13,8 @@ const App = () => {
           path={['/login', '/register']}
           component={() => <LandingPage />}
         />
-        <PrivateRoute path="/" component={() => <GameHome />} />
+        <PrivateRoute exact path="/" component={() => <GameHome />} />
+        <PrivateRoute path="/game" component={() => <>hi</>} />
       </Switch>
     </div>
   );
