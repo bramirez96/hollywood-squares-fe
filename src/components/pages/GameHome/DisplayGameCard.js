@@ -8,7 +8,7 @@ const DisplayGameCard = (props) => {
   const { Title, Winner, Finished } = props.game;
   return (
     <Col span={8}>
-      <Card className="display-game-card" onClick={clickHandler} hoverable>
+      <Card className="display-game-card" hoverable onClick={clickHandler}>
         <Card.Meta
           title={Title}
           description={

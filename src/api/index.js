@@ -13,3 +13,7 @@ export const register = async (credentials) => {
 export const getGames = () => {
   return axiosWithAuth.get('/games');
 };
+
+export const loadQuestions = (id) => {
+  return axiosWithAuth.get(`/questions/${id}`);
+};

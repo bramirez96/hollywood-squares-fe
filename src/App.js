@@ -4,6 +4,7 @@ import { PrivateRoute } from './components/common';
 
 import { LandingPage } from './components/pages/LandingPage/';
 import { GameHome } from './components/pages/GameHome';
+import { GameSetup } from './components/pages/GameSetup';
 
 const App = () => {
   return (
@@ -14,7 +15,7 @@ const App = () => {
           component={() => <LandingPage />}
         />
         <PrivateRoute exact path="/" component={() => <GameHome />} />
-        <PrivateRoute path="/game" component={() => <>hi</>} />
+        <PrivateRoute path="/game/setup" component={() => <GameSetup />} />
       </Switch>
     </div>
   );
